@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <title>Steg Tool</title>
+    <meta name='viewport'
+        content='width=device-width, initial-scale=1, maximum-scale=1'>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <style>
+
+
+
+            .btn-grad {background-image: linear-gradient(to right, #00C9FF 0%, #92FE9D  51%, #00C9FF  100%)}
+            .btn-grad {
+            padding: 5px 15px;
+            text-align: center;
+            transition: 0.5s;
+            background-size: 200% auto;
+            color: rgb(0, 0, 0);            
+            box-shadow: 0 0 20px #eee;
+            border-radius: 10px;
+            border-color: #eee;
+            display: block;
+          }
+
+          .btn-grad:hover {
+            background-position: right center; /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+          }
+         
+         
+
+        html,
+        body {
+          font-family: "Open Sans", sans-serif;
+          font-size: 14px;
+          margin: 0;
+          min-height: 100vh;
+          padding: 0;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          
+        }
+  
+        h1 {
+          font-family: "Menlo", monospace;
+          font-size: 22px;
+          font-weight: 400;
+          margin: 0;
+          color: #2f5876;
+        }
+  
+        .modal-header {
+          align-items: center;
+          border-bottom: 0.5px solid #ffffff;
+        }
+        .logo {
+        padding: 16px;
+        }
+
+        .logo-icon {
+        vertical-align: text-bottom;
+        margin-right: 12px;
+        }
+        .module-border-wrap {
+        position: relative;
+        background: linear-gradient(to right, #27ed87, #00f3ff);
+        padding: 3px;
+        width: 400px;
+        }
+
+        .module {
+        background: rgb(255, 255, 255);
+        }
+
+        #bord1{
+          border-top: 2px solid #D3D3D3;
+        }
+
+      </style>
+      <script src='sjcl.min.js' type='text/javascript'></script>
+    <script src='popup.js' type='text/javascript'></script>
+</head>
+<body>
+  <div class="module-border-wrap"><div class="module">
+    <div class="modal-header">
+      <h1 class="logo">
+        <img class="logo-icon" src="iconm.png" /> SnapScribe
+        <span class="version">(1.0.0)</span>
+      </h1>
+    </div>
+
+
+    <div class="container ">
+      <div class="row">
+              <div class="col-sm" id="bord1">
+                    <p class="title" style="padding-top: 5px;"><b>Encode</b></p>
+                    <div class="field">
+                        <div class="control">
+                          <input type='password' id='password' class="form-control" type="text" placeholder="Password">
+                        </div>
+                        <p class="text-info">Optional</p>
+                    </div>
+                    
+                    <div class="field">
+                            <div class="control">
+                                    <textarea id='message' class="form-control" placeholder="Enter Message" cols="22"></textarea>
+                            </div>
+                            <div class="control"  style="padding-bottom: 8px; padding-top: 5px;">      
+                            <button id='encode' class='btn-grad' >Hide message</button>
+                            </div>
+                            
+                    </div>
+               </div>
+
+               <div class="col-sm" id="bord1">
+                    <p class="title" style=" padding-top: 5px;"><b>Upload image to Encode/Decode</b></p>
+
+                    <div class="field">
+                    
+                    <div id='main' class="file is-right is-primary">
+                      
+                      <label class="file-label">
+                          <input id='file' class="file-input" type='file'>
+                          <span class="file-cta">
+                            <span class="file-icon">
+                              <i class="fas fa-upload"></i>
+                            </span>
+                          </span>
+                      </label>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="col-sm" id="bord1">
+                  <div class="content"  style="padding-top: 5px;">
+                    <p class="title"><b>Decode Message</b></p>
+                    <div class="content">
+
+                          <input type='password' id='password2' class="form-control" placeholder='Password' />
+                      </div><br>  
+                      <button id='decode' class='btn-grad'>Reveal message</button>
+                      
+                    
+                </div>
+               
+
+                <div id='choose' class='section dark hide'>
+                    <div class='sectionbody'>
+                        
+                    </div>
+                </div><br>
+                <div id='reveal' class='section dark hide'>
+                    <div class='title'><b>Hidden message: </b></div>
+                    <div id='messageDecoded' class='subtitle'  style="padding-top: 10px;"></div><br>
+                </div>
+
+                </div>
+            </div>
+          </div>
+        <canvas hidden id='canvas' class="canvas"></canvas>
+        </div></div>
+</body>
+</html>
