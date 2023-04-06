@@ -35,6 +35,50 @@ var sjcl = {
 };
 if (typeof module != "undefined" && module.exports) module.exports = sjcl;
 
+window.onload = function() {
+
+    var inp = document.getElementById('file');
+    inp.addEventListener('change', importImage);
+
+
+    var enc_buttton = document.getElementById('encode');
+    enc_buttton.addEventListener('click', enc);
+
+
+    var dec_buttton = document.getElementById('decode');
+    dec_buttton.addEventListener('click', dec);
+};
+
+//We limit the message size manually
+var MsgMaxSize = 1000;
+
+//put the image into canvas
+var importImage = function(e) {
+    var rdr = new FileReader();
+
+    rdr.onload = function(event) {
+
+        document.getElementById('message').value = '';
+        document.getElementById('password').value = '';
+        document.getElementById('password2').value = '';
+        document.getElementById('messageDecoded').innerHTML = '';
+
+        //put image data into canvas
+        var pic = new Image();
+        pic.onload = function() {
+            var ctx = document.getElementById('canvas').getContext('2d');
+            ctx.canvas.width = pic.width;
+            ctx.canvas.height = pic.height;
+            ctx.drawImage(pic, 0, 0);
+
+            dec();
+        };
+        pic.src = event.target.result;
+    };
+
+    rdr.readAsDataURL(e.target.files[0]);
+};
+
 //encode the image and download it
 var enc = function() {
     var msg = document.getElementById('message').value;
